@@ -1,0 +1,8 @@
+<div>
+    <%= for post <- @posts do %>
+        <img src={Blog.Thumbnail.url({post.picture, post}, signed: true)} />
+        <%= post.title %>
+        <%= post.subtitle %>
+        <%= post.body %>
+    <% end %>
+</div>

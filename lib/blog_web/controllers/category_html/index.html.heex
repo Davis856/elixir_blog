@@ -1,0 +1,21 @@
+<.header>
+  Listing Categories
+  <:actions>
+    <.link href={~p"/admin/categories/new"}>
+      <.button>New Category</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="categories" rows={@categories}>
+  <:col :let={category} label="Name"><%= category.name %></:col>
+  <:action :let={category}>
+    <.link navigate={~p"/admin/categories/#{category.name}"}>Show</.link>
+    <.link navigate={~p"/admin/categories/#{category.name}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={category}>
+    <.link href={~p"/admin/categories/#{category.name}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

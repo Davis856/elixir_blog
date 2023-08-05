@@ -1,0 +1,27 @@
+<.header>
+  Listing Posts
+  <:actions>
+    <.link href={~p"/admin/posts/new"}>
+      <.button>New Post</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="posts" rows={@posts}>
+  <:col :let={post} label="Title"><%= post.title %></:col>
+  <:col :let={post} label="Subtitle"><%= post.subtitle %></:col>
+  <:col :let={post} label="Body"><%= post.body %></:col>
+  <:col :let={post} label="Picture"><%= Blog.Thumbnail.url({post.picture, post}, signed: true) %></:col>
+  <:col :let={post} label="Slug"><%= post.slug %></:col>
+  <:col :let={post} label="Date"><%= post.date %></:col>
+  <:col :let={post} label="Category ID"><%= post.category_id %></:col>
+  <:action :let={post}>
+    <.link navigate={~p"/admin/posts/#{post.slug}"}>Show</.link>
+    <.link navigate={~p"/admin/posts/#{post.slug}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={post}>
+    <.link href={~p"/admin/posts/#{post.slug}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
